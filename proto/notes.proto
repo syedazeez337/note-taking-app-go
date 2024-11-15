@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package notes;
+
+option go_package = "github.com/syedazeez337/note-taking-app-go/pb";
+
+// NoteService definition
+service NoteService {
+  rpc CreateNote (CreateNoteRequest) returns (CreateNoteResponse);
+  rpc GetNote (GetNoteRequest) returns (GetNoteResponse);
+  rpc ListNotes (ListNotesRequest) returns (ListNotesResponse);
+  rpc UpdateNote (UpdateNoteRequest) returns (UpdateNoteResponse);
+  rpc DeleteNote (DeleteNoteRequest) returns (DeleteNoteResponse);
+}
+
+// Note message structure
+message Note {
+  string id = 1;
+  string title = 2;
+  string content = 3;
+}
+
+// Requests and Responses
+message CreateNoteRequest {
+  string title = 1;
+  string content = 2;
+}
+
+message CreateNoteResponse {
+  Note note = 1;
+}
+
+message GetNoteRequest {
+  string id = 1;
+}
+
+message GetNoteResponse {
+  Note note = 1;
+}
+
+message ListNotesRequest {}
+
+message ListNotesResponse {
+  repeated Note notes = 1;
+}
+
+message UpdateNoteRequest {
+  string id = 1;
+  string title = 2;
+  string content = 3;
+}
+
+message UpdateNoteResponse {
+  Note note = 1;
+}
+
+message DeleteNoteRequest {
+  string id = 1;
+}
+
+message DeleteNoteResponse {
+  bool success = 1;
+}
